@@ -6,7 +6,7 @@ import { categories } from "@/data/demo";
 import { useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/produkte/")({
-  validateSearch: (s: Record<string, unknown>): { kategorie?: string } => ({ kategorie: typeof s.kategorie === "string" ? s.kategorie : undefined }),
+  validateSearch: (s: Record<string, unknown>): { kategorie?: string | undefined } => ({ kategorie: typeof s["kategorie"] === "string" ? s["kategorie"] : undefined }),
   head: () => ({ meta: [
     { title: "Produkte — Mader Steinwelt" },
     { name: "description", content: "Alle Mineralien, Edelsteine, Schmuckstücke und alpinen Produkte im Überblick." },
