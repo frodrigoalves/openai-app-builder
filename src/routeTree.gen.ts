@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
+import { Route as WarenkorbRouteImport } from './routes/warenkorb'
+import { Route as ProdukteIndexRouteImport } from './routes/produkte.index'
+import { Route as ProdukteSlugRouteImport } from './routes/produkte.$slug'
+import { Route as VerwaltungAnmeldenRouteImport } from './routes/verwaltung.anmelden'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UeberUnsRoute = UeberUnsRouteImport.update({
+  id: '/ueber-uns',
+  path: '/ueber-uns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WarenkorbRoute = WarenkorbRouteImport.update({
+  id: '/warenkorb',
+  path: '/warenkorb',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProdukteIndexRoute = ProdukteIndexRouteImport.update({
+  id: '/produkte/',
+  path: '/produkte/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProdukteSlugRoute = ProdukteSlugRouteImport.update({
+  id: '/produkte/$slug',
+  path: '/produkte/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerwaltungAnmeldenRoute = VerwaltungAnmeldenRouteImport.update({
+  id: '/verwaltung/anmelden',
+  path: '/verwaltung/anmelden',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/kontakt': typeof KontaktRoute
+  '/ueber-uns': typeof UeberUnsRoute
+  '/warenkorb': typeof WarenkorbRoute
+  '/produkte/$slug': typeof ProdukteSlugRoute
+  '/verwaltung/anmelden': typeof VerwaltungAnmeldenRoute
+  '/produkte/': typeof ProdukteIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/kontakt': typeof KontaktRoute
+  '/ueber-uns': typeof UeberUnsRoute
+  '/warenkorb': typeof WarenkorbRoute
+  '/produkte/$slug': typeof ProdukteSlugRoute
+  '/verwaltung/anmelden': typeof VerwaltungAnmeldenRoute
+  '/produkte': typeof ProdukteIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/kontakt': typeof KontaktRoute
+  '/ueber-uns': typeof UeberUnsRoute
+  '/warenkorb': typeof WarenkorbRoute
+  '/produkte/$slug': typeof ProdukteSlugRoute
+  '/verwaltung/anmelden': typeof VerwaltungAnmeldenRoute
+  '/produkte/': typeof ProdukteIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/kontakt'
+    | '/ueber-uns'
+    | '/warenkorb'
+    | '/produkte/$slug'
+    | '/verwaltung/anmelden'
+    | '/produkte/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/kontakt'
+    | '/ueber-uns'
+    | '/warenkorb'
+    | '/produkte/$slug'
+    | '/verwaltung/anmelden'
+    | '/produkte'
+  id:
+    | '__root__'
+    | '/'
+    | '/kontakt'
+    | '/ueber-uns'
+    | '/warenkorb'
+    | '/produkte/$slug'
+    | '/verwaltung/anmelden'
+    | '/produkte/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  KontaktRoute: typeof KontaktRoute
+  UeberUnsRoute: typeof UeberUnsRoute
+  WarenkorbRoute: typeof WarenkorbRoute
+  ProdukteSlugRoute: typeof ProdukteSlugRoute
+  VerwaltungAnmeldenRoute: typeof VerwaltungAnmeldenRoute
+  ProdukteIndexRoute: typeof ProdukteIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ueber-uns': {
+      id: '/ueber-uns'
+      path: '/ueber-uns'
+      fullPath: '/ueber-uns'
+      preLoaderRoute: typeof UeberUnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/warenkorb': {
+      id: '/warenkorb'
+      path: '/warenkorb'
+      fullPath: '/warenkorb'
+      preLoaderRoute: typeof WarenkorbRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produkte/': {
+      id: '/produkte/'
+      path: '/produkte'
+      fullPath: '/produkte/'
+      preLoaderRoute: typeof ProdukteIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produkte/$slug': {
+      id: '/produkte/$slug'
+      path: '/produkte/$slug'
+      fullPath: '/produkte/$slug'
+      preLoaderRoute: typeof ProdukteSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/verwaltung/anmelden': {
+      id: '/verwaltung/anmelden'
+      path: '/verwaltung/anmelden'
+      fullPath: '/verwaltung/anmelden'
+      preLoaderRoute: typeof VerwaltungAnmeldenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  KontaktRoute: KontaktRoute,
+  UeberUnsRoute: UeberUnsRoute,
+  WarenkorbRoute: WarenkorbRoute,
+  ProdukteSlugRoute: ProdukteSlugRoute,
+  VerwaltungAnmeldenRoute: VerwaltungAnmeldenRoute,
+  ProdukteIndexRoute: ProdukteIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
