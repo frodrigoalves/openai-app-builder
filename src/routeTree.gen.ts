@@ -12,10 +12,22 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as UeberUnsRouteImport } from './routes/ueber-uns'
+import { Route as VerwaltungRouteImport } from './routes/verwaltung'
 import { Route as WarenkorbRouteImport } from './routes/warenkorb'
 import { Route as ProdukteIndexRouteImport } from './routes/produkte.index'
 import { Route as ProdukteSlugRouteImport } from './routes/produkte.$slug'
-import { Route as VerwaltungAnmeldenRouteImport } from './routes/verwaltung.anmelden'
+import { Route as VerwaltungIndexRouteImport } from './routes/verwaltung.index'
+import { Route as VerwaltungBenutzerRouteImport } from './routes/verwaltung.benutzer'
+import { Route as VerwaltungBestellungenRouteImport } from './routes/verwaltung.bestellungen'
+import { Route as VerwaltungEinstellungenRouteImport } from './routes/verwaltung.einstellungen'
+import { Route as VerwaltungKategorienRouteImport } from './routes/verwaltung.kategorien'
+import { Route as VerwaltungKundenRouteImport } from './routes/verwaltung.kunden'
+import { Route as VerwaltungLagerbestandRouteImport } from './routes/verwaltung.lagerbestand'
+import { Route as VerwaltungMedienRouteImport } from './routes/verwaltung.medien'
+import { Route as VerwaltungProdukteRouteImport } from './routes/verwaltung.produkte'
+import { Route as VerwaltungWareneingangRouteImport } from './routes/verwaltung.wareneingang'
+import { Route as VerwaltungWebsiteInhalteRouteImport } from './routes/verwaltung.website-inhalte'
+import { Route as VerwaltungAnmeldenRouteImport } from './routes/verwaltung_.anmelden'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -30,6 +42,11 @@ const KontaktRoute = KontaktRouteImport.update({
 const UeberUnsRoute = UeberUnsRouteImport.update({
   id: '/ueber-uns',
   path: '/ueber-uns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VerwaltungRoute = VerwaltungRouteImport.update({
+  id: '/verwaltung',
+  path: '/verwaltung',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WarenkorbRoute = WarenkorbRouteImport.update({
@@ -47,8 +64,64 @@ const ProdukteSlugRoute = ProdukteSlugRouteImport.update({
   path: '/produkte/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VerwaltungIndexRoute = VerwaltungIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => VerwaltungRoute,
+} as any)
+const VerwaltungBenutzerRoute = VerwaltungBenutzerRouteImport.update({
+  id: '/benutzer',
+  path: '/benutzer',
+  getParentRoute: () => VerwaltungRoute,
+} as any)
+const VerwaltungBestellungenRoute = VerwaltungBestellungenRouteImport.update({
+  id: '/bestellungen',
+  path: '/bestellungen',
+  getParentRoute: () => VerwaltungRoute,
+} as any)
+const VerwaltungEinstellungenRoute = VerwaltungEinstellungenRouteImport.update({
+  id: '/einstellungen',
+  path: '/einstellungen',
+  getParentRoute: () => VerwaltungRoute,
+} as any)
+const VerwaltungKategorienRoute = VerwaltungKategorienRouteImport.update({
+  id: '/kategorien',
+  path: '/kategorien',
+  getParentRoute: () => VerwaltungRoute,
+} as any)
+const VerwaltungKundenRoute = VerwaltungKundenRouteImport.update({
+  id: '/kunden',
+  path: '/kunden',
+  getParentRoute: () => VerwaltungRoute,
+} as any)
+const VerwaltungLagerbestandRoute = VerwaltungLagerbestandRouteImport.update({
+  id: '/lagerbestand',
+  path: '/lagerbestand',
+  getParentRoute: () => VerwaltungRoute,
+} as any)
+const VerwaltungMedienRoute = VerwaltungMedienRouteImport.update({
+  id: '/medien',
+  path: '/medien',
+  getParentRoute: () => VerwaltungRoute,
+} as any)
+const VerwaltungProdukteRoute = VerwaltungProdukteRouteImport.update({
+  id: '/produkte',
+  path: '/produkte',
+  getParentRoute: () => VerwaltungRoute,
+} as any)
+const VerwaltungWareneingangRoute = VerwaltungWareneingangRouteImport.update({
+  id: '/wareneingang',
+  path: '/wareneingang',
+  getParentRoute: () => VerwaltungRoute,
+} as any)
+const VerwaltungWebsiteInhalteRoute =
+  VerwaltungWebsiteInhalteRouteImport.update({
+    id: '/website-inhalte',
+    path: '/website-inhalte',
+    getParentRoute: () => VerwaltungRoute,
+  } as any)
 const VerwaltungAnmeldenRoute = VerwaltungAnmeldenRouteImport.update({
-  id: '/verwaltung/anmelden',
+  id: '/verwaltung_/anmelden',
   path: '/verwaltung/anmelden',
   getParentRoute: () => rootRouteImport,
 } as any)
@@ -57,10 +130,22 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/kontakt': typeof KontaktRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/verwaltung': typeof VerwaltungRouteWithChildren
   '/warenkorb': typeof WarenkorbRoute
   '/produkte/$slug': typeof ProdukteSlugRoute
+  '/verwaltung/benutzer': typeof VerwaltungBenutzerRoute
+  '/verwaltung/bestellungen': typeof VerwaltungBestellungenRoute
+  '/verwaltung/einstellungen': typeof VerwaltungEinstellungenRoute
+  '/verwaltung/kategorien': typeof VerwaltungKategorienRoute
+  '/verwaltung/kunden': typeof VerwaltungKundenRoute
+  '/verwaltung/lagerbestand': typeof VerwaltungLagerbestandRoute
+  '/verwaltung/medien': typeof VerwaltungMedienRoute
+  '/verwaltung/produkte': typeof VerwaltungProdukteRoute
+  '/verwaltung/wareneingang': typeof VerwaltungWareneingangRoute
+  '/verwaltung/website-inhalte': typeof VerwaltungWebsiteInhalteRoute
   '/verwaltung/anmelden': typeof VerwaltungAnmeldenRoute
   '/produkte/': typeof ProdukteIndexRoute
+  '/verwaltung/': typeof VerwaltungIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,18 +153,41 @@ export interface FileRoutesByTo {
   '/ueber-uns': typeof UeberUnsRoute
   '/warenkorb': typeof WarenkorbRoute
   '/produkte/$slug': typeof ProdukteSlugRoute
+  '/verwaltung/benutzer': typeof VerwaltungBenutzerRoute
+  '/verwaltung/bestellungen': typeof VerwaltungBestellungenRoute
+  '/verwaltung/einstellungen': typeof VerwaltungEinstellungenRoute
+  '/verwaltung/kategorien': typeof VerwaltungKategorienRoute
+  '/verwaltung/kunden': typeof VerwaltungKundenRoute
+  '/verwaltung/lagerbestand': typeof VerwaltungLagerbestandRoute
+  '/verwaltung/medien': typeof VerwaltungMedienRoute
+  '/verwaltung/produkte': typeof VerwaltungProdukteRoute
+  '/verwaltung/wareneingang': typeof VerwaltungWareneingangRoute
+  '/verwaltung/website-inhalte': typeof VerwaltungWebsiteInhalteRoute
   '/verwaltung/anmelden': typeof VerwaltungAnmeldenRoute
   '/produkte': typeof ProdukteIndexRoute
+  '/verwaltung': typeof VerwaltungIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/kontakt': typeof KontaktRoute
   '/ueber-uns': typeof UeberUnsRoute
+  '/verwaltung': typeof VerwaltungRouteWithChildren
   '/warenkorb': typeof WarenkorbRoute
   '/produkte/$slug': typeof ProdukteSlugRoute
-  '/verwaltung/anmelden': typeof VerwaltungAnmeldenRoute
+  '/verwaltung/benutzer': typeof VerwaltungBenutzerRoute
+  '/verwaltung/bestellungen': typeof VerwaltungBestellungenRoute
+  '/verwaltung/einstellungen': typeof VerwaltungEinstellungenRoute
+  '/verwaltung/kategorien': typeof VerwaltungKategorienRoute
+  '/verwaltung/kunden': typeof VerwaltungKundenRoute
+  '/verwaltung/lagerbestand': typeof VerwaltungLagerbestandRoute
+  '/verwaltung/medien': typeof VerwaltungMedienRoute
+  '/verwaltung/produkte': typeof VerwaltungProdukteRoute
+  '/verwaltung/wareneingang': typeof VerwaltungWareneingangRoute
+  '/verwaltung/website-inhalte': typeof VerwaltungWebsiteInhalteRoute
+  '/verwaltung_/anmelden': typeof VerwaltungAnmeldenRoute
   '/produkte/': typeof ProdukteIndexRoute
+  '/verwaltung/': typeof VerwaltungIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,10 +195,22 @@ export interface FileRouteTypes {
     | '/'
     | '/kontakt'
     | '/ueber-uns'
+    | '/verwaltung'
     | '/warenkorb'
     | '/produkte/$slug'
+    | '/verwaltung/benutzer'
+    | '/verwaltung/bestellungen'
+    | '/verwaltung/einstellungen'
+    | '/verwaltung/kategorien'
+    | '/verwaltung/kunden'
+    | '/verwaltung/lagerbestand'
+    | '/verwaltung/medien'
+    | '/verwaltung/produkte'
+    | '/verwaltung/wareneingang'
+    | '/verwaltung/website-inhalte'
     | '/verwaltung/anmelden'
     | '/produkte/'
+    | '/verwaltung/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -98,23 +218,47 @@ export interface FileRouteTypes {
     | '/ueber-uns'
     | '/warenkorb'
     | '/produkte/$slug'
+    | '/verwaltung/benutzer'
+    | '/verwaltung/bestellungen'
+    | '/verwaltung/einstellungen'
+    | '/verwaltung/kategorien'
+    | '/verwaltung/kunden'
+    | '/verwaltung/lagerbestand'
+    | '/verwaltung/medien'
+    | '/verwaltung/produkte'
+    | '/verwaltung/wareneingang'
+    | '/verwaltung/website-inhalte'
     | '/verwaltung/anmelden'
     | '/produkte'
+    | '/verwaltung'
   id:
     | '__root__'
     | '/'
     | '/kontakt'
     | '/ueber-uns'
+    | '/verwaltung'
     | '/warenkorb'
     | '/produkte/$slug'
-    | '/verwaltung/anmelden'
+    | '/verwaltung/benutzer'
+    | '/verwaltung/bestellungen'
+    | '/verwaltung/einstellungen'
+    | '/verwaltung/kategorien'
+    | '/verwaltung/kunden'
+    | '/verwaltung/lagerbestand'
+    | '/verwaltung/medien'
+    | '/verwaltung/produkte'
+    | '/verwaltung/wareneingang'
+    | '/verwaltung/website-inhalte'
+    | '/verwaltung_/anmelden'
     | '/produkte/'
+    | '/verwaltung/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KontaktRoute: typeof KontaktRoute
   UeberUnsRoute: typeof UeberUnsRoute
+  VerwaltungRoute: typeof VerwaltungRouteWithChildren
   WarenkorbRoute: typeof WarenkorbRoute
   ProdukteSlugRoute: typeof ProdukteSlugRoute
   VerwaltungAnmeldenRoute: typeof VerwaltungAnmeldenRoute
@@ -144,6 +288,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UeberUnsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/verwaltung': {
+      id: '/verwaltung'
+      path: '/verwaltung'
+      fullPath: '/verwaltung'
+      preLoaderRoute: typeof VerwaltungRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/warenkorb': {
       id: '/warenkorb'
       path: '/warenkorb'
@@ -165,8 +316,85 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProdukteSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/verwaltung/anmelden': {
-      id: '/verwaltung/anmelden'
+    '/verwaltung/': {
+      id: '/verwaltung/'
+      path: '/'
+      fullPath: '/verwaltung/'
+      preLoaderRoute: typeof VerwaltungIndexRouteImport
+      parentRoute: typeof VerwaltungRoute
+    }
+    '/verwaltung/benutzer': {
+      id: '/verwaltung/benutzer'
+      path: '/benutzer'
+      fullPath: '/verwaltung/benutzer'
+      preLoaderRoute: typeof VerwaltungBenutzerRouteImport
+      parentRoute: typeof VerwaltungRoute
+    }
+    '/verwaltung/bestellungen': {
+      id: '/verwaltung/bestellungen'
+      path: '/bestellungen'
+      fullPath: '/verwaltung/bestellungen'
+      preLoaderRoute: typeof VerwaltungBestellungenRouteImport
+      parentRoute: typeof VerwaltungRoute
+    }
+    '/verwaltung/einstellungen': {
+      id: '/verwaltung/einstellungen'
+      path: '/einstellungen'
+      fullPath: '/verwaltung/einstellungen'
+      preLoaderRoute: typeof VerwaltungEinstellungenRouteImport
+      parentRoute: typeof VerwaltungRoute
+    }
+    '/verwaltung/kategorien': {
+      id: '/verwaltung/kategorien'
+      path: '/kategorien'
+      fullPath: '/verwaltung/kategorien'
+      preLoaderRoute: typeof VerwaltungKategorienRouteImport
+      parentRoute: typeof VerwaltungRoute
+    }
+    '/verwaltung/kunden': {
+      id: '/verwaltung/kunden'
+      path: '/kunden'
+      fullPath: '/verwaltung/kunden'
+      preLoaderRoute: typeof VerwaltungKundenRouteImport
+      parentRoute: typeof VerwaltungRoute
+    }
+    '/verwaltung/lagerbestand': {
+      id: '/verwaltung/lagerbestand'
+      path: '/lagerbestand'
+      fullPath: '/verwaltung/lagerbestand'
+      preLoaderRoute: typeof VerwaltungLagerbestandRouteImport
+      parentRoute: typeof VerwaltungRoute
+    }
+    '/verwaltung/medien': {
+      id: '/verwaltung/medien'
+      path: '/medien'
+      fullPath: '/verwaltung/medien'
+      preLoaderRoute: typeof VerwaltungMedienRouteImport
+      parentRoute: typeof VerwaltungRoute
+    }
+    '/verwaltung/produkte': {
+      id: '/verwaltung/produkte'
+      path: '/produkte'
+      fullPath: '/verwaltung/produkte'
+      preLoaderRoute: typeof VerwaltungProdukteRouteImport
+      parentRoute: typeof VerwaltungRoute
+    }
+    '/verwaltung/wareneingang': {
+      id: '/verwaltung/wareneingang'
+      path: '/wareneingang'
+      fullPath: '/verwaltung/wareneingang'
+      preLoaderRoute: typeof VerwaltungWareneingangRouteImport
+      parentRoute: typeof VerwaltungRoute
+    }
+    '/verwaltung/website-inhalte': {
+      id: '/verwaltung/website-inhalte'
+      path: '/website-inhalte'
+      fullPath: '/verwaltung/website-inhalte'
+      preLoaderRoute: typeof VerwaltungWebsiteInhalteRouteImport
+      parentRoute: typeof VerwaltungRoute
+    }
+    '/verwaltung_/anmelden': {
+      id: '/verwaltung_/anmelden'
       path: '/verwaltung/anmelden'
       fullPath: '/verwaltung/anmelden'
       preLoaderRoute: typeof VerwaltungAnmeldenRouteImport
@@ -175,10 +403,43 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface VerwaltungRouteChildren {
+  VerwaltungBenutzerRoute: typeof VerwaltungBenutzerRoute
+  VerwaltungBestellungenRoute: typeof VerwaltungBestellungenRoute
+  VerwaltungEinstellungenRoute: typeof VerwaltungEinstellungenRoute
+  VerwaltungKategorienRoute: typeof VerwaltungKategorienRoute
+  VerwaltungKundenRoute: typeof VerwaltungKundenRoute
+  VerwaltungLagerbestandRoute: typeof VerwaltungLagerbestandRoute
+  VerwaltungMedienRoute: typeof VerwaltungMedienRoute
+  VerwaltungProdukteRoute: typeof VerwaltungProdukteRoute
+  VerwaltungWareneingangRoute: typeof VerwaltungWareneingangRoute
+  VerwaltungWebsiteInhalteRoute: typeof VerwaltungWebsiteInhalteRoute
+  VerwaltungIndexRoute: typeof VerwaltungIndexRoute
+}
+
+const VerwaltungRouteChildren: VerwaltungRouteChildren = {
+  VerwaltungBenutzerRoute: VerwaltungBenutzerRoute,
+  VerwaltungBestellungenRoute: VerwaltungBestellungenRoute,
+  VerwaltungEinstellungenRoute: VerwaltungEinstellungenRoute,
+  VerwaltungKategorienRoute: VerwaltungKategorienRoute,
+  VerwaltungKundenRoute: VerwaltungKundenRoute,
+  VerwaltungLagerbestandRoute: VerwaltungLagerbestandRoute,
+  VerwaltungMedienRoute: VerwaltungMedienRoute,
+  VerwaltungProdukteRoute: VerwaltungProdukteRoute,
+  VerwaltungWareneingangRoute: VerwaltungWareneingangRoute,
+  VerwaltungWebsiteInhalteRoute: VerwaltungWebsiteInhalteRoute,
+  VerwaltungIndexRoute: VerwaltungIndexRoute,
+}
+
+const VerwaltungRouteWithChildren = VerwaltungRoute._addFileChildren(
+  VerwaltungRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KontaktRoute: KontaktRoute,
   UeberUnsRoute: UeberUnsRoute,
+  VerwaltungRoute: VerwaltungRouteWithChildren,
   WarenkorbRoute: WarenkorbRoute,
   ProdukteSlugRoute: ProdukteSlugRoute,
   VerwaltungAnmeldenRoute: VerwaltungAnmeldenRoute,

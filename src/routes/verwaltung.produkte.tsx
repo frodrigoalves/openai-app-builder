@@ -12,7 +12,7 @@ import { useStore } from "@/lib/store";
 import type { CategoryId, Product } from "@/lib/types";
 
 export const Route = createFileRoute("/verwaltung/produkte")({
-  validateSearch: (s: Record<string, unknown>): { neu?: boolean } => ({ neu: s.neu === true || s.neu === "true" ? true : undefined }),
+  validateSearch: (s: Record<string, unknown>): { neu?: boolean | undefined } => ({ neu: s["neu"] === true || s["neu"] === "true" ? true : undefined }),
   component: Products,
 });
 
@@ -76,8 +76,8 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
         <SheetTitle className="font-display text-3xl font-medium">{isNew ? "Neues Produkt" : "Produkt bearbeiten"}</SheetTitle>
         {p && <form className="mt-6 space-y-4" onSubmit={(e) => {
           e.preventDefault();
-          if (!p.name.trim()) return toast.error("Bitte einen Produktnamen eingeben.");
-          if (p.price <= 0) return toast.error("Bitte einen gültigen Verkaufspreis eingeben.");
+          if (!p.name.trim()) { toast.error("Bitte einen Produktnamen eingeben."); return; }
+          if (p.price <= 0) { toast.error("Bitte einen gültigen Verkaufspreis eingeben."); return; }
           saveProduct({ ...p, slug: p.slug || slugify(p.name), sku: p.sku || `MS-${slugify(p.name).slice(0, 3).toUpperCase()}-${Date.now() % 1000}`, shortDescription: p.shortDescription || p.description.slice(0, 60) });
           toast.success(isNew ? "Produkt angelegt — im Katalog sichtbar" : "Änderungen gespeichert"); onClose();
         }}>
